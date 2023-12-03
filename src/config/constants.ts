@@ -1,0 +1,7 @@
+export const POSTGRES_ERROR = {
+    1061:"CHECK_INSTALL_TARGETS",
+    42601:"INVALID_COLUMNS",
+    23505:"CHECK_UNIQUE",
+    42703:"checkInsertTargets",
+
+}

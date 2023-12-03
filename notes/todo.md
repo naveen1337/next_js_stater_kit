@@ -1,0 +1,1 @@
+[] Add a float value type of all price related stock

@@ -1,0 +1,14 @@
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  mode: 'jit',
+  content: [
+    // "./src/pages/**/*.{js,ts,jsx,tsx}",
+    "./src/page_routes/**/*.{js,ts,jsx,tsx}",
+    "./src/shared/components/**/*.{js,ts,jsx,tsx}",
+  ],
+
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
