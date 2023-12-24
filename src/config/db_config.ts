@@ -1,15 +1,15 @@
-import knex from "knex";
+import knex, { Knex } from "knex";
 import { Pool } from "pg";
 
 // knex query Builder
-export const qb:any = knex({
+export const qb:Knex = knex({
   client: "pg",
   // connection: {
-  //   host: "127.0.0.1",
+  //   host: "",
   //   port: 5432,
-  //   user: "postgres",
-  //   password: "password",  // change it on production
-  //   database: "finance_ledger",
+  //   user: "",
+  //   password: "",
+  //   database: "",
   // },
   migrations: {
     tableName: "migrations",
@@ -17,13 +17,16 @@ export const qb:any = knex({
 });
 
 export const dbConnection = new Pool({
-  host: "127.0.0.1",
-  port: 5432,
-  user: "postgres",
-  password: "password",  // change it on production
-  database: "finance_ledger",
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME,
   max: 2,
   connectionTimeoutMillis:3000,
+  // log:(e)=>{
+  //   console.log(e)
+  // }
 });
 
 export default dbConnection;
