@@ -6,9 +6,11 @@ import { insertRow } from "../../shared/dbUtils/genQuery"
 
 export async function createSkuService(connection: any, payload: any): Promise<any> {
     try {
-        const query = insertRow(connection,"sku",payload,["skuCode"])
+        const query = await insertRow(connection,"sku",payload,["skuCode"])
+        if(query.code != fnRtrnCodes.OK){
+            return getFnReturn(fnRtrnCodes.OK, query, null)
+        }
         // const result = await connection.query(query)
-        return getFnReturn(fnRtrnCodes.OK, query, null)
     }
     catch (err) {
         console.log(err)

@@ -1,0 +1,8 @@
+{
+    "sentry":{
+        "enableServer":false,
+        "enableClient":false,
+        "enableEdge":false,
+        "sentryDebug":false
+    }
+}

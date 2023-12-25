@@ -3,5 +3,4 @@ export const POSTGRES_ERROR = {
     42601:"INVALID_COLUMNS",
     23505:"CHECK_UNIQUE",
     42703:"checkInsertTargets",
-
 }

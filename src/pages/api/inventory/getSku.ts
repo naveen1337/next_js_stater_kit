@@ -7,7 +7,8 @@ import { validateCreateViewPayload } from '../../../shared/appUtils/validation'
 import { getSuccessRes, getFailRes, fnRtrnCodes } from '../../../shared/appUtils/response'
 import { isGetReq } from '../../../shared/appUtils/comman'
 import { getRowsWithWhere } from '../../../shared/dbUtils/genQuery'
-
+import { captureException } from '@sentry/nextjs';
+import logger from '../../../shared/appUtils/logUtils'
 
 export default async function handler(
     req: NextApiRequest,
@@ -15,6 +16,7 @@ export default async function handler(
 ) {
     let connection: any = null
     try {
+        logger.info('hello world')
         if (isGetReq(req.method) === false) {
             return res.status(405).json({})
         }
@@ -23,7 +25,7 @@ export default async function handler(
             connection,
             {
                 tbl: "sku",
-                select: ['skuCode'],
+                select: ['skuCode', "name"],
             }
         )
         if (response.data) {
@@ -33,8 +35,9 @@ export default async function handler(
         }
     }
     catch (err) {
+        captureException(err, {})
         console.log(err)
-        return res.status(100).json({ status: false, msg: "exception" })
+        return getSuccessRes(res, 500, null, "getm SKU Exception")
     }
     finally {
         connection?.release()
